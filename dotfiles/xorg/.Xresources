@@ -1,0 +1,78 @@
+! *.font: xft:Hack:style=Bold:size=16
+*.internalBorder: 15
+*.scrollBar: False
+
+! special
+*.foreground:   #d6deeb
+*.background:   #011627
+*.cursorColor:  #d6deeb
+
+! black
+*.color0:       #011627
+*.color8:       #575656
+
+! red
+*.color1:       #ef5350
+*.color9:       #ef5350
+
+! green
+*.color2:       #22da6e
+*.color10:      #22da6e
+
+! yellow
+*.color3:       #addb67
+*.color11:      #ffeb95
+
+! blue
+*.color4:       #82aaff
+*.color12:      #82aaff
+
+! magenta
+*.color5:       #c792ea
+*.color13:      #c792ea
+
+! cyan
+*.color6:       #21c7a8
+*.color14:      #7fdbca
+
+! white
+*.color7:       #ffffff
+*.color15:      #ffffff
+
+! XTERM SETTINGS
+XTerm.vt100.faceName:          xft:InputMonoNarrow:size=10
+XTerm.vt100.bellIsUrgent:      true
+XTerm.vt100.scrollBar:         true
+XTerm.vt100.scrollbar.width:   8
+XTerm.vt100.internalBorder:    16
+
+xterm*faceName: Iosevka
+xterm*faceSize: 12
+
+! Scroll lines, lots of scroll lines
+xterm*savelines: 16384
+
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+xterm*loginshell: true
+
+
+! right hand side scrollbar...
+xterm*rightScrollBar: false
+xterm*ScrollBar: false
+
+! stop output to terminal from jumping down to bottom of scroll again
+xterm*scrollTtyOutput: false
+
+Xterm*VT100.selectToClipboard: true
+XTerm*selectToClipboard: true
+
+
+
+xterm*VT100.Translations: #override \
+                 Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                 Ctrl Shift <Key>C:    copy-selection(CLIPBOARD) \n\
+                 Shift<Btn1Down>: select-start() \n\
+                 Shift<Btn1Motion>: select-extend() \n\
+                 Shift<Btn1Up>: select-end(CLIPBOARD) \n\
+                 

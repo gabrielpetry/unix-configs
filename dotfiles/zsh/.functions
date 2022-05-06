@@ -1,0 +1,12 @@
+#!/bin/bash
+# Shell functions
+cd() { # {{{
+    # defaults to the given value
+    dir="$@"
+    # if its a file, gets the dirname
+    test -f "$@" && dir="$(dirname "$@" 2>/dev/null)"
+    # if nothing then defaults to homedir
+    [[ -z "$dir" ]] && dir="$HOME"
+    builtin cd -L "$dir" || return 1
+    pwd > ~/.config/.last_dir
+} # }}}

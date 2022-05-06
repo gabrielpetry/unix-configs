@@ -1,0 +1,110 @@
+#!/bin/bash
+# vim: fdm=marker ft=sh
+alias ls="ls -F --color"
+alias md="mkdir -p"
+alias rd=rmdir
+alias vim="node --version 2>&1 >/dev/null ; nvim"
+alias vimzsh="vim ~/.zshrc; srczsh"
+alias vimaliases="vim \$HOME/.aliases; srczsh"
+alias vimfunctions="vim \$HOME/.functions; srczsh"
+alias srczsh="rm /tmp/.zshrc_cache; source ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias sudovim="sudo -e"
+alias svim="sudo -e"
+alias ll="ls -l"
+alias la="ls -la"
+alias tree="tree -C"
+alias pa="php artisan"
+alias xclip-i="xclip -selection clipboard -t image/png -i"
+alias s="export TERM=xterm; ssh "
+alias please="sudo"
+alias ft='flutter'
+alias cpf="/usr/local/bin/cpf | xclip"
+alias -g ~~="~"
+function aliases() {
+  alias | grep -i $1 | grep -E "^[a-zA-Z0-9]+"
+}
+
+# Hand tools
+alias -g 2null="2>/dev/null 3>/dev/null "
+alias -g H=" | head -n"
+alias -g T=" | tail -n"
+
+
+## Grep
+export GREP_EXCLUDE="--exclude-dir={node_modules,dir}"
+alias c="ps aux | grep -v grep 2null | grep 2null "
+alias g="grep -ni --color 2null "
+alias gg="grep \$GREP_EXCLUDE -Ri --color 2null "
+alias gge="$grep -ERi --color 2null "
+alias -g G="| grep -i 2null "
+alias ggrep="grep"
+# alias -g X="| ~/Projects/github/go_clipboard/boot.sh -i"
+alias -g S="| sort"
+alias -g U="| uniq"
+alias -g X="| xargs"
+alias -g XX="| xargs -I{}"
+
+function fastAwk() {
+  awk "{print \$${1:-1}}";
+}
+
+alias -g A="| fastAwk"
+
+## tail
+alias -g T="| tail -n"
+
+## docker
+if ! uname | grep -iq Darwin; then
+	alias -g docker="fix_wsl2_interop; /usr/bin/docker"
+fi
+alias dockernames="docker ps --format '{{.ID}}\t{{.Names}}'"
+alias php53="docker run --rm -it -v "$PWD:$PWD" -w $PWD php:5.3.29-cli php"
+alias dknames='dockernames'
+alias dc="docker-compose"
+alias dcupd='dc up -d --remove-orphans'
+alias dps="docker ps"
+alias d="docker "
+alias de="docker exec -it "
+alias dcl="docker-compose logs "
+alias dclf="docker-compose logs -f"
+
+## git
+alias gs="git branch && echo --- && git status -s && echo \$(git status -s W) Arquivos modificados"
+alias gd="git diff"
+alias ga="git add"
+alias push='git push origin $(git branch --show-current)'
+alias pull='git fetch; git pull origin $(git branch --show-current)'
+alias gc="gcom"
+alias gcm="gcom"
+alias gco="git switch "
+alias gb="gbranch"
+alias gbm="gbranch m"
+# helpers
+alias -g W=" | wc -l "
+
+
+# alias composer="composer --ignore-platform-reqs"
+# alias code="echo $(date) >> $HOME/code_open.log && code-insiders"
+
+
+serve() {
+ docker run --rm -it -p 80:80 -v "$PWD/$1:/usr/share/nginx/html" nginx:alpine
+}
+
+alias .='cd .'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias -g ../..='...'
+alias -g ../../..='....'
+alias p="source p"
+alias reset-suggestions="rm -f ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit"
+
+# Rust variantes that are amazing
+alias ccat='cat'
+alias cat='bat'
+alias ls='exa'
+alias df='duf'
+alias curl='curlie'

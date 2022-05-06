@@ -1,0 +1,8 @@
+#!/bin/bash
+# source "${HOME}/.profile" & # source .profile variables
+ # unclutter & # no mouse when iddle
+# "${HOME}"/petryfiles/scripts/update_mpris2.py & # Start the update_mpris2 daemon
+# sxhkd -c "${HOME}"/.config/sxhkd/sxhkdrc &
+# compton &
+# hash syndaemon && syndaemon -d -K -t -i 2 & # remove mouse tap while typing
+# fusuma -d & # Start fusuma for multigestures on lightdm boot
