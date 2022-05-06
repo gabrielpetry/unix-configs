@@ -1,0 +1,8 @@
+
+# remove notification of background jobs
+setopt no_monitor
+setopt EXTENDED_HISTORY
+export HISTSIZE=2000
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=$HISTSIZE
+zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'

@@ -1,0 +1,37 @@
+
+# ctrl + a send to beginning of line
+bindkey "^a" beginning-of-line
+# ctrl + e send to end of line
+bindkey "^e" end-of-line
+
+# ctrl + s back on word
+bindkey "^s" backward-word
+# ctrl + f back on word
+bindkey "^f" forward-word
+
+bindkey "^c" backward-word
+# ctrl + k clear to EOL
+bindkey "^k" kill-line
+# ctrl + d delete one char
+bindkey "^d" delete-char
+# ctrl + y run the command and keep the line
+bindkey "^y" accept-and-hold
+# ctrl + w delete last world
+bindkey "^w" backward-kill-word
+# ctrl + u delete til start of line
+bindkey "^u" backward-kill-line
+# ctrl + r search
+# bindkey '^R' history-incremental-search-backward
+# ctrl + right forwards word
+bindkey "^[[1;5C" forward-word
+# ctrl + left backwards word
+bindkey "^[[1;5D" backward-word
+
+
+my-backward-delete-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    zle backward-delete-word
+}
+
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word

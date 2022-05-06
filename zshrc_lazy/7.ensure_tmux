@@ -1,0 +1,8 @@
+
+# ensure tmux
+#disabled
+#if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+#    [ -z "$TMUX"  ] && { tmux -2 }
+#else
+#    cd $(git rev-parse --show-toplevel)
+#fi

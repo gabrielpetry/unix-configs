@@ -1,0 +1,13 @@
+
+try_nvm() {
+    test -f package.json && source $PETRYFILES/bin/p_node && return
+    load_nvm
+}
+
+load_nvm() {
+    command -v node | grep -iq '/' && return
+    echo "sourcing nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \
+    source "$NVM_DIR/nvm.sh"  # This loads nvm
+    source "$HOME/petryfiles/completions/_yarn"
+}

@@ -1,0 +1,14 @@
+
+load_gcloud() {
+    source '/Users/petry/Downloads/google-cloud-sdk 2/path.zsh.inc'
+    # The next line enables shell command completion for gcloud.
+    source '/Users/petry/Downloads/google-cloud-sdk 2/completion.zsh.inc'
+}
+
+
+gcloud() {
+  unset -f gcloud
+  load_gcloud
+  gcloud $@
+}
+
