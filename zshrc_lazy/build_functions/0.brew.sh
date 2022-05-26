@@ -1,3 +1,3 @@
 
 echo
-/opt/homebrew/bin/brew shellenv
+/usr/local/bin/brew shellenv

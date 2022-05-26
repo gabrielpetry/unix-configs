@@ -34,7 +34,7 @@ window:
   startup_mode: Windowed
 
   # Background opacity
-  opacity: 0.95
+  opacity: 1
 
 scrolling:
   history: 10000
