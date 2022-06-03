@@ -34,7 +34,7 @@ window:
   startup_mode: Windowed
 
   # Background opacity
-  opacity: 1
+  opacity: 0.95
 
 scrolling:
   history: 10000
@@ -47,18 +47,18 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: Comic Mono
+    family: Iosevka term
     # style: Medium
     # family: "Fira Code"
     # family: "Source Code Pro"
     # style: Retina
   bold:
-    family: Comic Mono
+    family: Iosevka Term
     style: Bold
     # family: "Fira Code"
     # family: "Source Code Pro"
   italic:
-    family: Comic Mono
+    family: Iosevka Term
 
   # Point size of the font
   size: 16.0
