@@ -17,6 +17,3 @@ export NC=$'\e[0m'
 export PRIMARY_COLOR="$($SCRIPTS_DIR/getColor.sh magenta)"
 export ALERT_COLOR="$($SCRIPTS_DIR/getColor.sh yellow)"
 export DANGER_COLOR="$($SCRIPTS_DIR/getColor.sh red)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
