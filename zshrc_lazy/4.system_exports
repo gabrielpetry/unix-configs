@@ -27,7 +27,5 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 # Nvm
 export NVM_DIR=~/.nvm
 export NVM_BIN_DIR=~/.nvm
-# Go
-export GOPATH=$HOME/go
-export GOROOT="/opt/homebrew/opt/go/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+export PATH="$PATH:$HOME/.local/bin"
