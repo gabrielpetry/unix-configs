@@ -15,7 +15,7 @@
 #     source "$eval_cache"
 # fi
 if ! command -v node > /dev/null; then
-    for p in nvm $(/opt/homebrew/bin/fd . $HOME/.nvm/versions/node/*/bin --max-depth 1 --exec basename {} \; | sort | uniq); do
+    for p in nvm $(fd . $HOME/.nvm/versions/node/*/bin --max-depth 1 --exec basename {} \; | sort | uniq); do
         echo
         echo "$p() { unset -f $p; try_nvm; $p \$@} "
     done
