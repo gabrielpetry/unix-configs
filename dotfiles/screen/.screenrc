@@ -1,0 +1,56 @@
+# Extend the vt100 desciption by some sequences.
+# termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
+# terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
+# 256 colors
+
+# term screen-256color-bce-s
+
+altscreen on
+attrcolor b ".I"
+defbce "on"
+termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+term screen-256color
+
+# Turn off the welcome message
+startup_message off
+#
+# # Disable visual bell
+vbell off
+#
+# # Set scrollback buffer to 10000
+defscrollback 10000
+
+# the following two lines give a two-line status, with the current window highlighted
+hardstatus alwayslastline
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+
+# mouse tracking allows to switch region focus by clicking
+mousetrack on
+
+
+# default windows
+screen -t Shell1  1 zsh
+bind c screen 1 # window numbering starts at 1 not 0
+bind 0 select 10
+
+# get rid of silly xoff stuff
+bind s split
+
+# Scroll up
+bindkey -d "^[[5S" eval copy "stuff 5\025"
+bindkey -m "^[[5S" stuff 5\025
+
+# Scroll down
+bindkey -d "^[[5T" eval copy "stuff 5\004"
+bindkey -m "^[[5T" stuff 5\004
+
+# Scroll up more
+bindkey -d "^[[25S" eval copy "stuff \025"
+bindkey -m "^[[25S" stuff \025
+
+# Scroll down more
+bindkey -d "^[[25T" eval copy "stuff \004"
+bindkey -m "^[[25T" stuff \004
+
