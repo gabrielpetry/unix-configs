@@ -1,5 +1,5 @@
-env:
-  TERM: xterm
+# env:
+  # TERM: xterm
 
 window:
   dimensions:
