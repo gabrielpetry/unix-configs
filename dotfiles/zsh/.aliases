@@ -37,7 +37,6 @@ export GREP_EXCLUDE="--exclude-dir={node_modules,dir}"
 alias c="ps aux | grep -v grep 2null | grep 2null "
 alias g="grep -ni --color 2null "
 alias gg="grep \$GREP_EXCLUDE -Ri --color 2null "
-alias gge="$grep -ERi --color 2null "
 alias -g G="| grep -i 2null "
 alias ggrep="grep"
 # alias -g X="| ~/Projects/github/go_clipboard/boot.sh -i"
@@ -60,7 +59,6 @@ if ! uname | grep -iq Darwin; then
 	alias -g docker="fix_wsl2_interop; /usr/bin/docker"
 fi
 alias dockernames="docker ps --format '{{.ID}}\t{{.Names}}'"
-alias php53="docker run --rm -it -v "$PWD:$PWD" -w $PWD php:5.3.29-cli php"
 alias dknames='dockernames'
 alias dc="docker-compose"
 alias dcupd='dc up -d --remove-orphans'
@@ -98,10 +96,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias -g ../..='...'
-alias -g ../../..='....'
+alias ../..='...'
+alias ../../..='....'
 alias p="source p"
-alias reset-suggestions="rm -f ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit"
 
 # Rust variantes that are amazing
 alias ccat='cat'
