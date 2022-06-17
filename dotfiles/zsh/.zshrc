@@ -20,9 +20,12 @@ test -f /etc/resolv.conf || sudo cp /etc/resolv.conf.2 /etc/resolv.conf
 source_file_cache="/tmp/.zshrc_cache"
 
 if test -f $source_file_cache && [ $(date +'%j') = $(/usr/bin/stat -f '%Sm' -t '%j' ${source_file_cache}) ]; then
+#     >/dev/null
 else
     echo "Creating zshrc cache $source_file_cache"
+
     find "$unixconfigs/zshrc_lazy" -type f -maxdepth 1 -exec cat {} \; > $source_file_cache
+    
     
     find "$unixconfigs/zshrc_lazy/build_functions" -type f -maxdepth 1 -exec {} \; >> $source_file_cache
     
@@ -45,4 +48,4 @@ if [ $ZSH_DEBUG -eq 1 ]; then
     zprof
 fi
 
-export TERM=xterm
+export TERM=xterm-256color
