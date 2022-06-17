@@ -13,8 +13,8 @@ cd "$dir" || exit 1
 for module in *; do
     [ "$module" = "apply.sh" ] && continue
     echo "module $module"
-    test -L "$HOME/.config/$module" && unlink "$HOME/.config/$module"
-    test -L "$HOME/$module" && unlink "$HOME/$module"
+    test -L "$HOME/.config/$module" && unlink "$HOME/.config/$module" 2>/dev/null
+    test -L "$HOME/$module" && unlink "$HOME/$module" 2>/dev/null
 
     mv "$HOME/.config/$module" "$backup_dir" 2>/dev/null
     mv "$HOME/$module" "$backup_dir" 2>/dev/null
