@@ -1,30 +1,36 @@
 #!/bin/bash
 timestamp=$(date +"%s")
-pwd="$PWD"
-dir="$(dirname $0)"
+oldpwd="$PWD"
+dir="$(dirname "$0")"
 
-checkFileAndremove() {
-    if [[ -d "$1" || -f "$1" || -L "$1" ]]; then
-        backup_dir="$HOME/.config/backup/$timestamp"
-        # mkdir -p "$backup_dir"
-        
-        # unlink "$1"
-        # mv "$1" "$backup_dir"
-    else
-        ls -la "$1"
+backup_dir="$HOME/.backup/dotfiles-$timestamp"
+
+mkdir -p "$backup_dir"
+echo "=====================Dotfiles Manager================="
+echo "Changing working dir to $dir"
+cd "$dir" || exit 1
+
+for module in *; do
+    [ "$module" = "apply.sh" ] && continue
+    echo "module $module"
+    test -L "$HOME/.config/$module" && unlink "$HOME/.config/$module"
+    test -L "$HOME/$module" && unlink "$HOME/$module"
+
+    mv "$HOME/.config/$module" "$backup_dir" 2>/dev/null
+    mv "$HOME/$module" "$backup_dir" 2>/dev/null
+
+    rootfiles="$(find "$module" -type f -maxdepth 1)"
+
+    # if this modules saves files to root, we move then
+    if [ -n "$rootfiles" ]; then
+      for file in $rootfiles; do 
+        mv "$HOME/${file//"$module"\//}" "$backup_dir"
+      done
     fi
-    
-    return 1
-}
-
-cd "$dir"
-echo "Removing old files"
-for module in $(ls -1 | grep -v apply.sh); do
-    unlink "$HOME/.config/$module"
-    unlink "$HOME/$module"
+        
     stow -v -t "$HOME" "$module"
+    echo "---------"
 done
 
-echo "All original files removed"
-
-cd "$pwd"
+echo "Changing working dir to $dir"
+cd "$oldpwd" || exit 1
