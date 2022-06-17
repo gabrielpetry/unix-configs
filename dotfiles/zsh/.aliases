@@ -3,7 +3,8 @@
 alias ls="ls -F --color"
 alias md="mkdir -p"
 alias rd=rmdir
-alias vim="node --version 2>&1 >/dev/null ; nvim"
+alias vim="node -v 2>&1 >/dev/null ; lvim"
+alias fvim="nvim"
 alias vimzsh="vim ~/.zshrc; srczsh"
 alias vimaliases="vim \$HOME/.aliases; srczsh"
 alias vimfunctions="vim \$HOME/.functions; srczsh"
@@ -108,3 +109,6 @@ alias cat='bat'
 alias ls='exa'
 alias df='duf'
 alias curl='curlie'
+
+
+test -f "/usr/local/bin/perl" && perl="/usr/local/bin/perl"
