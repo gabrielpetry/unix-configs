@@ -4,9 +4,61 @@ cd() { # {{{
     # defaults to the given value
     dir="$@"
     # if its a file, gets the dirname
-    test -f "$@" && dir="$(dirname "$@" 2>/dev/null)"
+    test -f "$@" && dir="$(dirname "$@" 2> /dev/null)"
     # if nothing then defaults to homedir
     [[ -z "$dir" ]] && dir="$HOME"
     builtin cd -L "$dir" || return 1
     pwd > ~/.config/.last_dir
 } # }}}
+
+rm() {
+    # shellcheck disable=2001
+    args="$(echo "$@" | sed 's/-[rf].*\ //')"
+
+    for arg in $args; do
+        /bin/mkdir -p "$HOME/.local/.trash/"
+        /bin/mv -f "$arg" "$HOME/.local/.trash/"
+    done
+}
+
+trash() {
+    ls -1a "$HOME/.local/.trash/"
+}
+
+parse_opts() {
+    args="$1"
+    shift
+    local var_name
+    while [[ "$#" -gt 0 ]]; do
+        var_name="${1//--/}"
+        shift
+        value="$1"
+        shift
+        for arg in $args; do
+            if [ "$arg" == "$var_name" ]; then
+                if [ -z "${!var_name-}" ]; then
+                    export "$var_name"="$value"
+                else
+                    export "$var_name"="${!var_name-} $value"
+                fi
+            fi
+        done
+    done
+}
+
+
+killall() {
+  local arg
+  local rest
+  arg="$(echo "$*" | grep -Eo '\-[0-9]')"
+  rest="${*/\-[0-9]/}"
+
+  [ -z "$rest" ] && echo "usage: killall [-[0-9]] program" && return 0
+
+  for prog in $(echo $rest); do
+    echo kill "$arg" "$prog"
+  done
+}
+
+alias ka="killall"
+alias k9="killall -9"
