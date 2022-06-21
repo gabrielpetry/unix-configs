@@ -56,7 +56,8 @@ killall() {
   [ -z "$rest" ] && echo "usage: killall [-[0-9]] program" && return 0
 
   for prog in $(echo $rest); do
-    echo kill "$arg" "$prog"
+    echo "killing: $(pgrep "$prog")"
+    kill "$arg" "$(pgrep "$prog")"
   done
 }
 
