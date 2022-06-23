@@ -9,13 +9,7 @@ cd() { # {{{
     [[ -z "$dir" ]] && dir="$HOME"
     builtin cd -L "$dir" || return 1
     pwd > ~/.config/.last_dir
-} # }}}
-
-rm() {
-    # shellcheck disable=2001
-    args="$(echo "$@" | sed 's/-[rf].*\ //')"
-
-    for arg in $args; do
+} # }}} rm() { shellcheck disable=2001 args="$(echo "$@" | sed 's/-[rf].*\ //')" for arg in $args; do
         /bin/mkdir -p "$HOME/.local/.trash/"
         /bin/mv -f "$arg" "$HOME/.local/.trash/"
     done
@@ -63,3 +57,7 @@ killall() {
 
 alias ka="killall"
 alias k9="killall -9"
+
+lines() {
+  awk 'END{ print NR }' $1
+}
