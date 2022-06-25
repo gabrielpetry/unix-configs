@@ -28,7 +28,7 @@ trash() {
 
     if [[ "$*" =~ "-s" ]]; then
       echo "Sumarizing disk usage"
-      du -sh "${trashcan}*" | sort -h
+      du -sh "${trashcan}"* | sort -h
     else
       ls -l1t "$trashcan"
     fi
