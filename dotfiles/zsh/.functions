@@ -12,17 +12,24 @@ cd() { # {{{
 } # }}}
 
 rm() {
+    [ -z "${trashcan-}" ] && trashcan="$HOME/.local/.trash/"
     # shellcheck disable=2001
     args="$(echo "$@" | sed 's/-[rf].*\ //')"
 
     for arg in $args; do
-        /bin/mkdir -p "$HOME/.local/.trash/"
-        /bin/mv -f "$arg" "$HOME/.local/.trash/"
+        /bin/mkdir -p "$trashcan"
+        /bin/mv -f "$arg" "$trashcan"
     done
 }
 
 trash() {
-    ls -1a "$HOME/.local/.trash/"
+    [ -z "${trashcan-}" ] && trashcan="$HOME/.local/.trash/"
+    echo "$trashcan"
+    if [[ "$*" =~ "-s" ]]; then
+      du -sh "$trashcan" | sort -h
+    else
+      ls -l1t "$trashcan"
+    fi
 }
 
 parse_opts() {
@@ -63,3 +70,12 @@ killall() {
 
 alias ka="killall"
 alias k9="killall -9"
+
+s() {
+  export TERM=xterm
+  if [[ "$*" =~ edg ]]; then
+    tsh ssh gabriel.petry@"$@"
+  else
+    ssh gabriel.petry@"$@"
+  fi
+}

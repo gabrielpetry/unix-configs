@@ -14,6 +14,7 @@
 #     # eval "$string"
 #     source "$eval_cache"
 # fi
+test -d $HOME/.nvm/versions || exit
 if ! command -v node > /dev/null; then
     for p in nvm $(fd . $HOME/.nvm/versions/node/*/bin --max-depth 1 --exec basename {} \; | sort | uniq); do
         echo

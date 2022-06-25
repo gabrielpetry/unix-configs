@@ -1,6 +1,6 @@
 #!/bin/bash
 # vim: fdm=marker ft=sh
-alias ls="ls -F --color"
+alias ls="ls --octal-permissions -F --color"
 alias md="mkdir -p"
 alias rd=rmdir
 alias vim="node -v 2>&1 >/dev/null ; lvim"
@@ -12,12 +12,12 @@ alias srczsh="rm /tmp/.zshrc_cache; source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias sudovim="sudo -e"
 alias svim="sudo -e"
-alias ll="ls -l"
-alias la="ls -la"
+alias ll="ls -l --octal-permissions"
+alias la="ls -la --octal-permissions"
 alias tree="tree -C"
 alias pa="php artisan"
 alias xclip-i="xclip -selection clipboard -t image/png -i"
-alias s="export TERM=xterm; ssh "
+# alias s="; ssh "
 alias please="sudo"
 alias ft='flutter'
 alias cpf="/usr/local/bin/cpf | xclip"
@@ -101,7 +101,7 @@ alias p="source p"
 
 # Rust variantes that are amazing
 alias ccat='/bin/cat'
-alias cat='bat -p'
+alias cat='bat -p -p'
 alias ls='exa'
 alias df='duf'
 alias curl='curlie'
@@ -109,3 +109,6 @@ alias curl='curlie'
 
 test -f "/usr/local/bin/perl" && perl="/usr/local/bin/perl"
 alias cp='rsync -ah --info=progress2'
+
+
+alias bash="/opt/homebrew/bin/bash"

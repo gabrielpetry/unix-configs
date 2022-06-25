@@ -1,12 +1,12 @@
 alt - return : open -na Alacritty #kitty
-
-alt - 1: skhd -k "ctrl - 1"
-alt - 2: skhd -k "ctrl - 2"
-alt - 3: skhd -k "ctrl - 3"
-alt - q: skhd -k "ctrl - 4"
-alt - w: skhd -k "ctrl - 5"
-alt - e: skhd -k "ctrl - 6"
-alt - a: skhd -k "ctrl - 7"
-alt - s: skhd -k "ctrl - 8"
-
-alt - f: skhd -k "cmd - ctrl - f"
+ 
+# alt - 1: skhd -k "ctrl - 1"
+# alt - 2: skhd -k "ctrl - 2"
+# alt - 3: skhd -k "ctrl - 3"
+# alt - q: skhd -k "ctrl - 4"
+# alt - w: skhd -k "ctrl - 5"
+# alt - e: skhd -k "ctrl - 6"
+# alt - a: skhd -k "ctrl - 7"
+# alt - s: skhd -k "ctrl - 8"
+# 
+# alt - f: skhd -k "cmd - ctrl - f"
