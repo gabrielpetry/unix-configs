@@ -25,9 +25,10 @@ rm() {
 trash() {
     [ -z "${trashcan-}" ] && trashcan="$HOME/.local/.trash/"
     echo "$trashcan"
+
     if [[ "$*" =~ "-s" ]]; then
       echo "Sumarizing disk usage"
-      du -sh "$trashcan/*" | sort -h
+      du -sh "${trashcan}*" | sort -h
     else
       ls -l1t "$trashcan"
     fi
