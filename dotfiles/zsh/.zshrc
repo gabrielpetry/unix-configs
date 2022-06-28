@@ -43,7 +43,7 @@ fi
 
 source "$unixconfigs/zsh-themes/petry.zsh"
 
-source "$HOME/.zshconfig" # no versioning
+source "$HOME/.zshconfig" || touch "$HOME/.zshconfig" # no versioning
 
 if [ $ZSH_DEBUG -eq 1 ]; then
     echo "DEBUG: $ZSH_DEBUG"

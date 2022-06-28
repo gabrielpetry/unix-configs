@@ -37,7 +37,6 @@ alias c="ps aux | grep -v grep 2null | grep 2null "
 alias g="grep -ni --color 2null "
 alias gg="grep -Ri --color 2null "
 alias -g G="| grep --color -i 2null "
-alias ggrep="grep"
 # alias -g X="| ~/Projects/github/go_clipboard/boot.sh -i"
 alias -g S="| sort"
 alias -g U="| uniq"
@@ -109,6 +108,7 @@ alias curl='curlie'
 
 test -f "/usr/local/bin/perl" && perl="/usr/local/bin/perl"
 alias cp='rsync -ah --info=progress2'
+alias rsync="rsync --info=progress2"
 
 
 alias bash="/opt/homebrew/bin/bash"

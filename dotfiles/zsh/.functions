@@ -73,11 +73,3 @@ killall() {
 alias ka="killall"
 alias k9="killall -9"
 
-s() {
-  export TERM=xterm
-  if [[ "$*" =~ edg ]]; then
-    tsh ssh gabriel.petry@"$@"
-  else
-    ssh gabriel.petry@"$@"
-  fi
-}
