@@ -20,7 +20,7 @@ test -f /etc/resolv.conf || sudo cp /etc/resolv.conf.2 /etc/resolv.conf
 source_file_cache="/tmp/.zshrc_cache"
 
 if test -f $source_file_cache && [ $(date +'%j') = $(/usr/bin/stat -f '%Sm' -t '%j' ${source_file_cache}) ]; then
-#     >/dev/null
+     echo 1 >/dev/null
 else
     echo "Creating zshrc cache $source_file_cache"
 
@@ -31,8 +31,8 @@ else
     
     find "$unixconfigs/zsh-plugins" -type f -maxdepth 1 -exec cat {} \; >> $source_file_cache
     
+    find "$unixconfigs/zsh-completions" -type f -maxdepth 1 -exec cat {} \; >> $source_file_cache
 fi
-source "$source_file_cache"
 
 # %j == day of year
 if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
@@ -40,6 +40,8 @@ if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompd
 else
     compinit -C
 fi
+
+source "$source_file_cache"
 
 source "$unixconfigs/zsh-themes/petry.zsh"
 
