@@ -14,9 +14,8 @@ cd() { # {{{
 rm() {
     [ -z "${trashcan-}" ] && trashcan="$HOME/.local/.trash/"
     # shellcheck disable=2001
-    args="$(echo "$@" | sed 's/-[rf].*\ //')"
 
-    for arg in $args; do
+    for arg in "$@"; do
         /bin/mkdir -p "$trashcan"
         /bin/mv -f "$arg" "$trashcan"
     done
