@@ -1,0 +1,31 @@
+#compdef _p p
+
+_p() {
+    local line state
+    
+    _arguments -C \
+    '1: :->cmds' \
+    '*::arg:->args'
+    case "$state" in
+        cmds)
+            _values "dolt command" \
+            $(find $HOME/projetos/ -maxdepth 1 -type d \
+                  | xargs basename \
+                  | grep -v logs \
+              | tail -n +2)
+        ;;
+        args)
+            org=$line[1]
+            compadd $(find $HOME/projetos/$org -maxdepth 1 -type d \
+                  | xargs basename \
+              | tail -n +1)
+        ;;
+    esac
+    
+    # compadd $(find $HOME/projetos/ -maxdepth 1 -type d \
+    #     | xargs basename \
+    # | tail -n +2)
+    
+    # echo "line" $line[1]
+}
+

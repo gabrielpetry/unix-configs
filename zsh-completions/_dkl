@@ -1,0 +1,7 @@
+#compdef _dkl dkl
+
+function _dkl {
+    local line
+    compadd $(docker ps --format '{{.Names}}')
+}
+

@@ -1,0 +1,7 @@
+#compdef _rmdir rmdir
+
+_rmdir() {
+    compadd $(find $PWD -type d -empty -maxdepth 1)
+}
+
+

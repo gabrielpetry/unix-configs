@@ -52,10 +52,6 @@ alias -g A="| fastAwk"
 ## tail
 alias -g T="| tail -n"
 
-## docker
-if ! uname | grep -iq Darwin; then
-	alias -g docker="fix_wsl2_interop; /usr/bin/docker"
-fi
 alias dockernames="docker ps --format '{{.ID}}\t{{.Names}}'"
 alias dknames='dockernames'
 alias dc="docker-compose"

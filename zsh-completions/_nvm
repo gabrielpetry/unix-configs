@@ -1,0 +1,6 @@
+#compdef _nvm nvm
+
+_nvm() {
+    compadd $(ls -1 $HOME/.nvm/versions/node | cut -d'v' -f2)
+}
+

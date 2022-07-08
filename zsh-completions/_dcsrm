@@ -1,0 +1,6 @@
+#compdef _dcsrm dcsrm
+
+_dcsrm() {
+    compadd compadd $(docker-compose ps --services 2>/dev/null)
+}
+
