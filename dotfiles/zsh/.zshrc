@@ -1,13 +1,16 @@
 #!/usr/bin/zsh
-# Main variables
 CURRENT_SHELL=$0
-export ZSH_DEBUG=0
+export ZSH_DEBUG=1
 autoload -U add-zsh-hook
-autoload -Uz compinit
+
+
 if [ $ZSH_DEBUG -eq 1 ]; then
     echo "DEBUG ZSH: $ZSH_DEBUG"
     zmodload zsh/zprof
 fi
+
+fpath=("$unixconfigs/zsh-completions" $fpath)
+autoload -Uz compinit
 
 # exports main repo to a variable
 export unixconfigs="$HOME/unix-configs"
@@ -18,34 +21,33 @@ export CACHE_DIR="$HOME/.cache"
 test -f /etc/resolv.conf || sudo cp /etc/resolv.conf.2 /etc/resolv.conf
 
 source_file_cache="/tmp/.zshrc_cache"
+current_date="$(date +'%d')"
+last_modified_zsh_cache="$(/bin/ls -l "$source_file_cache" | awk '{print $7}')"
+last_modified_completions="$(/bin/ls -l /tmp/.zcompdump | awk '{print $7}')"
 
-if test -f $source_file_cache && [ $(date +'%j') = $(/usr/bin/stat -f '%Sm' -t '%j' ${source_file_cache}) ]; then
-     echo 1 >/dev/null
-else
+if "$last_modified_zsh_cache" != "$current_date"; then
     echo "Creating zshrc cache $source_file_cache"
-
+    echo "loading zshrc_lazy"
     find "$unixconfigs/zshrc_lazy" -type f -maxdepth 1 -exec cat {} \; > $source_file_cache
-    
-    
+    echo "loading build functions"
     find "$unixconfigs/zshrc_lazy/build_functions" -type f -maxdepth 1 -exec {} \; >> $source_file_cache
-    
+    echo "loading zsh-plugins"
     find "$unixconfigs/zsh-plugins" -type f -maxdepth 1 -exec cat {} \; >> $source_file_cache
-    
-    find "$unixconfigs/zsh-completions" -type f -maxdepth 1 -exec cat {} \; >> $source_file_cache
 fi
 
-# %j == day of year
-if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+# Check if compdump need to be redone
+if [ "$last_modified_completions" != "$current_date" ]; then
+    echo "Recreating completions"
     compinit
 else
     compinit -C
 fi
 
+
 source "$source_file_cache"
-
 source "$unixconfigs/zsh-themes/petry.zsh"
-
 source "$HOME/.zshconfig" || touch "$HOME/.zshconfig" # no versioning
+
 
 if [ $ZSH_DEBUG -eq 1 ]; then
     echo "DEBUG: $ZSH_DEBUG"
