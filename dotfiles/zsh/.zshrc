@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 CURRENT_SHELL=$0
-export ZSH_DEBUG=1
+export ZSH_DEBUG=0
 autoload -U add-zsh-hook
 
 
