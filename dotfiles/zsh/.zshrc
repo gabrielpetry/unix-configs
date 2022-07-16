@@ -60,4 +60,5 @@ if [ $ZSH_DEBUG -eq 1 ]; then
     zprof
 fi
 
+echo "$(date +"%Y-%m-%d %H:%M:%S")" >> ~/.terminal_oppened
 export TERM=xterm-256color
